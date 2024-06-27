@@ -1,7 +1,7 @@
 import { db } from "../lib/firebase";
 import { Low, Medium, High } from "../components/Icons";
 
-export const extractPriority = (priority) => {
+export const extractPriority = priority => {
   switch (priority) {
     case "low": {
       return <Low />;
@@ -33,7 +33,7 @@ export const debounce = (callback, wait) => {
   };
 };
 
-export const createBoardForAnons = (userId) => {
+export const createBoardForAnons = userId => {
   const tasks = [
     {
       id: "1",
@@ -94,7 +94,7 @@ export const createBoardForAnons = (userId) => {
       priority: "medium",
       todos: [],
       description:
-        "### Tell me your suggestions, feedback or anything at all!\n[This](http://github.com/luck-chap/Kamui) is the link to the Github repo. Drop a 🌟 if you like it. \n**Keep a beginner motivated**.\n **Resources:** \n[Jira-Clone](https://github.com/oldboyxx/jira_clone), \n[Personal-Kanban](https://github.com/nishantpainter/personal-kanban), \n[Zaytri](https://github.com/zaytri/react-kanban)",
+        "### Tell me your suggestions, feedback or anything at all!\n[This](https://github.com/devalpha18/kamui-kanban) is the link to the Github repo. Drop a 🌟 if you like it. \n**Keep a beginner motivated**.\n **Resources:** \n[Jira-Clone](https://github.com/oldboyxx/jira_clone), \n[Personal-Kanban](https://github.com/nishantpainter/personal-kanban), \n[Zaytri](https://github.com/zaytri/react-kanban)",
     },
 
     {
@@ -127,13 +127,13 @@ export const createBoardForAnons = (userId) => {
     .doc("first")
     .set({ name: "Welcome to Kamui 👋" });
 
-  columns.forEach((c) => {
+  columns.forEach(c => {
     db.collection(`users/${userId}/boards/first/columns`)
       .doc(c.title)
       .set({ title: c.title, taskIds: c.taskIds });
   });
 
-  tasks.forEach((t) => {
+  tasks.forEach(t => {
     db.collection(`users/${userId}/boards/first/tasks`).doc(t.id).set(t);
   });
 };
