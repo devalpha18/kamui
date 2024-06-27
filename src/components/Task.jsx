@@ -1,5 +1,5 @@
 import { Draggable } from "react-beautiful-dnd";
-import ChecklistProgress from "./ChecklistProgress";
+import CheckListProgress from "./CheckListProgress";
 import { extractPriority } from "../lib/utils";
 import Modal from "./Modal";
 import TaskDetails from "../pages/TaskDetails";
@@ -57,7 +57,7 @@ const Task = ({
               <div className="flex mt-2 space-x-3 sm:space-x-5">
                 {extractPriority(theTask.priority)}
                 {theTask.todos.length >= 1 && (
-                  <ChecklistProgress todos={theTask.todos} />
+                  <CheckListProgress todos={theTask.todos} />
                 )}
                 {theTask.description !== null &&
                 theTask.description?.length > 1 ? (
