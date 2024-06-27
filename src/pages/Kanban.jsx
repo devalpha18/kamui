@@ -27,7 +27,7 @@ const Kanban = ({ userId }) => {
   const [filter, setFilter] = useState(null);
   const filters = ["high", "medium", "low"];
 
-  const onDragEnd = (result) => {
+  const onDragEnd = result => {
     const { destination, source, draggableId } = result;
 
     if (!destination) return;
@@ -102,7 +102,7 @@ const Kanban = ({ userId }) => {
     }
   };
 
-  const addCol = (e) => {
+  const addCol = e => {
     e.preventDefault();
     const newColumnName = e.target.elements.newCol.value;
     db.collection(`users/${userId}/boards/${boardId}/columns`)
@@ -118,7 +118,7 @@ const Kanban = ({ userId }) => {
     e.target.elements.newCol.value = "";
   };
 
-  const changeBoardName = debounce((ev) => {
+  const changeBoardName = debounce(ev => {
     db.collection(`users/${userId}/boards`).doc(boardId).update({ name: ev });
   }, 7000);
 
@@ -151,7 +151,7 @@ const Kanban = ({ userId }) => {
                       type="text"
                       defaultValue={boardName}
                       className="text-gray-800 ml-2 w-1/2 truncate bg-transparent border-b-2 border-b-white focus:border-none"
-                      onChange={(e) => changeBoardName(e.target.value)}
+                      onChange={e => changeBoardName(e.target.value)}
                     />
                   </span>
                   <div className="flex flex-wrap items-center sm:space-x-9">
@@ -160,7 +160,7 @@ const Kanban = ({ userId }) => {
                         Filter Priority:{" "}
                       </h3>
                       <div className="space-x-1 text-blue-900 flex bg-indigo-50 rounded-sm">
-                        {filters.map((f) => (
+                        {filters.map(f => (
                           <div
                             key={f}
                             className={`px-3  border-black py-1 hover:bg-blue-600 hover:text-blue-50 cursor-pointer capitalize ${
@@ -184,7 +184,7 @@ const Kanban = ({ userId }) => {
 
                     <div className="flex items-center text-blue-900 hover:bg-blue-600 hover:text-blue-50 bg-transparent transition duration-200 cursor-pointer hover:scale-110 rounded-sm px-2 py-1 mr-3 sm:flex text-2xl">
                       <a
-                        href="https://github.com/pranjalshikhar/kamui"
+                        href="https://github.com/devalpha18/kamui"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -207,7 +207,7 @@ const Kanban = ({ userId }) => {
                   type="column"
                   direction="horizontal"
                 >
-                  {(provided) => (
+                  {provided => (
                     <div
                       {...provided.droppableProps}
                       ref={provided.innerRef}
@@ -216,7 +216,7 @@ const Kanban = ({ userId }) => {
                     >
                       {initialData?.columnOrder.map((col, i) => {
                         const column = initialData?.columns[col];
-                        const tasks = column.taskIds?.map((t) => t);
+                        const tasks = column.taskIds?.map(t => t);
                         return (
                           <Column
                             column={column}
